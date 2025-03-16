@@ -935,11 +935,25 @@ bool isPrim(int nr) {
     return true;
 }
 
-void back27(int*s, int suma,)
+void back27(int*s, int suma,int k) {
+    if(suma == 0) {
+        tipar(s,k);
+        return;
+    }
+    for(int i = 1; i <= suma; i++) {
+        s[k] = i;
+        if(isPrim(i)) {
+            back27(s,suma - i,k + 1);
+        }
+    }
+}
 
 void ex27() {
     int s[10]{}, suma = 9, k = 0;
-
+    back27(s,suma,k);
 }
+
+
+//
 #endif //TEMABAC_H
 
