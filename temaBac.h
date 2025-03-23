@@ -954,6 +954,339 @@ void ex27() {
 }
 
 
-//
-#endif //TEMABAC_H
+///tema 22.3.2025
 
+//sa se genereze perm. unui cuv. in ord. alfabetica
+
+bool validChar28(char*s, int k) {
+    for(int i = 0; i < k; i++) {
+        if(s[i] == s[k]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void back28(char*s, char*v, int n, int k) {
+    for(int i = 0; i < n; i++) {
+        s[k] = v[i];
+        if(validChar28(s,k)) {
+            if(k == n - 1) {
+                cout << s << endl;
+            }
+            else {
+                back28(s,v,n,k + 1);
+            }
+        }
+    }
+}
+
+void ex28() {
+    char v[10] = "bac", s[10]{};
+    int n = 3, k = 0;
+    bubbleSortChar(v,n);
+    back28(s,v,n,k);
+}
+
+//sa se afis nrSol 2 cif. cu cif pare distincte
+
+bool valid29(int*s, int k) {
+    if(k == 0 && s[k] == 0) {
+        return false;
+    }
+    for(int i = 0; i < k; i++) {
+        if(s[i] == s[k]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void back29(int*s, int n, int k, int&nrSol) {
+    for(int i = 0; i < 10; i+=2) {
+        s[k] = i;
+        if(valid29(s,k)) {
+            if(k == n - 1) {
+                tipar(s,n);
+                nrSol++;
+            }
+            else {
+                back29(s,n,k + 1,nrSol);
+            }
+        }
+    }
+}
+
+void ex29() {
+    int s[10]{}, n = 2, k = 0, nrSol = 0;
+    back29(s,n,k,nrSol);
+    cout << nrSol << endl;
+}
+
+//sa se genereze nr. de 5 cif. din multimea {3,5,7}.
+
+void back30(int*s, int n, int k) {
+    for(int i = 3; i <= 7; i+=2) {
+        s[k] = i;
+        if(k == n - 1) {
+            tipar(s,n);
+        }
+        else {
+            back30(s,n,k + 1);
+        }
+    }
+}
+
+void ex30() {
+    int s[10]{}, n = 5, k = 0;
+    back30(s,n,k);
+
+}
+
+//sa se genereze nr. de 5 cif. in ord. descresc. cu cif. in ord cresc.
+
+bool valid31(int*s, int k) {
+    for(int i = 0; i < k; i++) {
+        if(s[i] >= s[k]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void back31(int*s, int n, int k) {
+    for(int i = 9; i > 0; i--) {
+        s[k] = i;
+        if(valid31(s,k)) {
+            if(k == n - 1) {
+                tipar(s,n);
+            }
+            else {
+                back31(s,n,k + 1);
+            }
+        }
+    }
+}
+
+void ex31() {
+    int s[10]{}, n = 5, k = 0;
+    back31(s,n,k);
+}
+
+//sa se genereze nr. cu n cif. binare
+
+void back32(int*s, int n, int k) {
+    for(int i = 0; i <= 1; i++) {
+        s[k] = i;
+        if(k == n - 1) {
+            tipar(s,n);
+        }
+        else {
+            back32(s,n,k + 1);
+        }
+    }
+}
+
+void ex32() {
+    int s[10]{}, n = 5, k = 0;
+    back32(s,n,k);
+}
+
+//sa se genereze nr. n cif distincte, fara 2 cif. pare alaturate
+
+bool valid33(int*s, int k) {
+    if(k == 0 && s[k] == 0) {
+        return false;
+    }
+    if(k > 0 && s[k] % 2 == s[k - 1] % 2 == 0) {
+        return false;
+    }
+    for(int i = 0; i < k; i++) {
+        if(s[i] == s[k]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void back33(int*s, int n, int k) {
+    for(int i = 0; i <= 9; i++) {
+        s[k] = i;
+        if(valid33(s,k)) {
+            if(k == n - 1) {
+                tipar(s,n);
+            }
+            else {
+                back33(s,n,k + 1);
+            }
+        }
+    }
+}
+
+void ex33() {
+    int s[10]{}, n = 5, k = 0;
+    back33(s,n,k);
+}
+
+//sa se genereze nr. de n cif., cu cif. in ord. cresc., fara 2 cif. pare alaturate
+
+bool valid34(int*s,int k) {
+    if(k > 0 && 0 == s[k] % 2 && 0 == s[k - 1] % 2) {
+        return false;
+    }
+    for(int i = 0; i < k; i++) {
+        if(s[i] >= s[k]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void back34(int*s, int n, int k) {
+    for(int i = 9; i > 0; i--) {
+        s[k] = i;
+        if(valid34(s,k)) {
+            if(k == n - 1) {
+                tipar(s,n);
+            }
+            else {
+                back34(s,n,k + 1);
+            }
+        }
+    }
+}
+
+void ex34() {
+    int s[10]{}, n = 5, k = 0;
+    back34(s,n,k);
+}
+
+//sa se genereze siruri de max. 3 char. din multimea {A,B,C,D,E}
+
+void back35(char*s, int n, int k) {
+    for(int i = 0; i < 5; i++) {
+        s[k] = char(i + 'A');
+        if(validChar28(s,k)) {
+            if(k <= n - 1) {
+                cout << s << endl;
+                back35(s,n,k + 1);
+            }
+
+        }
+    }
+}
+
+void ex35() {
+    char s[10]{};
+    int n = 3, k = 0;
+    back35(s,n,k);
+}
+
+//se citeste un nr. n impar. Sa se genereze comb. care incep si se termina cu 0 si modulul dif. intre oricare 2 cif.
+//alaturate este 1
+
+bool valid36(int*s, int k) {
+    if(k > 0) {
+        if(s[k] < s[k - 1]) {
+            int aux = s[k];
+            s[k] = s[k - 1];
+            s[k - 1] = aux;
+        }
+        if(s[k] - s[k - 1] != 1) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool solutie36(int*s, int n, int k) {
+    if(k == n - 1) {
+        if(s[0] == 0 && s[k] == 0) {
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
+
+void back36(int*s, int n, int k) {
+    for(int i = 0; i < 10; i++) {
+        s[k] = i;
+        if(valid36(s,k)) {
+            if(solutie36(s,n,k)) {
+                tipar(s,n);
+            }
+            else {
+                back36(s,n,k + 1);
+            }
+        }
+    }
+}
+
+void ex36() {
+    int s[10]{}, n = 7, k = 0;
+    back36(s,n,k);
+}
+
+// sa se genereze nr. de p cif. formate cu {0,2,9}
+
+bool valid37(int*s, int k) {
+    if(k == 0 && s[k] == 0) {
+        return false;
+    }
+    return true;
+}
+
+void back37(int*s,int*v, int n,int p, int k) {
+    for(int i = 0; i < n; i++) {
+        s[k] = v[i];
+        if(valid37(s,k)) {
+            if(k == p - 1) {
+                tipar(s,p);
+            }
+            else {
+                back37(s,v,n,p,k + 1);
+            }
+        }
+    }
+}
+
+void ex37() {
+    int v[10]{0,2,9}, s[10]{}, n = 3, p = 4, k = 0;
+    back37(s,v,n,p,k);
+}
+
+//sa se genereze in ord. cresc. nr. n cif. din multimea {0,2,8}. Cate nr. generate sunt div. cu 100
+
+int vToI(int*v, int dim) {
+    int rez = 0;
+    for(int i = 0; i < dim; i++) {
+        rez += v[i];
+        rez *= 10;
+    }
+    return rez;
+}
+
+void back38(int*s, int*v, int n, int p, int k,int&nrSol) {
+    for(int i = 0; i < n; i++) {
+        s[k] = v[i];
+        if(valid37(s,k)) {
+            if(k == p - 1) {
+                tipar(s,p);
+                if(vToI(s,p) % 1000 == 0) {
+                    nrSol++;
+                }
+            }
+            else {
+                back38(s,v,n,p,k + 1,nrSol);
+            }
+        }
+    }
+}
+
+void ex38() {
+    int v[10]{0,2,8}, s[10]{}, n = 3, p = 4, k = 0, nrSol = 0;
+    back38(s,v,n,p,k,nrSol);
+    cout << nrSol << endl;
+}
+#endif //TEMABAC_H
