@@ -953,7 +953,6 @@ void ex27() {
     back27(s,suma,k);
 }
 
-
 ///tema 22.3.2025
 
 //sa se genereze perm. unui cuv. in ord. alfabetica
@@ -1289,4 +1288,6 @@ void ex38() {
     back38(s,v,n,p,k,nrSol);
     cout << nrSol << endl;
 }
+
+
 #endif //TEMABAC_H

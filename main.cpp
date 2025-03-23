@@ -1,5 +1,5 @@
-#include "temaBac.h"
+#include "backtrackingInPlan.h"
 
 int main() {
-    ex38();
+    ex1();
 }

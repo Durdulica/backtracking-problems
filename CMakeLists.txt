@@ -6,8 +6,10 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(backtracking main.cpp
         permutari.h
         aranjamente.h
-
         combinari.h
         produsCartezian.h
         exercitii.h
-        temaBac.h)
+        temaBac.h
+        backtrackingInPlan.h
+        problemaTuristului.h
+)
